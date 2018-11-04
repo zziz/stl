@@ -128,9 +128,9 @@ partial_sort      1 2 3 4 5 9 10 7 6
 Current State     4 1 5 7 9 2 6 10 3 
 nth_element       3 1 2 4 5 6 7 10 9 
 Current State     4 3 5 10 6 1 9 7 2 
-sort_heap     1 2 3 4 5 6 7 9 10 
+sort_heap         1 2 3 4 5 6 7 9 10 
 Current State     4 1 5 9 6 2 10 7 3 
 Current State     1 4 5 6 9 2 10 7 3 
 Current State     1 4 5 6 9 2 3 7 10 
-inplace_merge         1 2 3 4 5 6 7 9 10 
+inplace_merge     1 2 3 4 5 6 7 9 10 
 ```
