@@ -332,6 +332,115 @@ void querying_algorithms(){
     else
         std::cout << find_number << " is not in the container" << std::endl;
 
+    // search 
+
+    // find_end
+
+    // find_first_of
+
+    // max_element
+
+    // min_element
+
+    // minmax_element
+
+}
+
+void set_algorithms(){
+    // set_difference
+
+    // set_intersection
+
+    // set_union
+
+    // set_symmetric_difference
+
+    // includes
+
+    // merge
+}
+
+void movers_algorithms(){
+    // copy
+    // std::copy(first, last, out);
+
+    // move
+    // std::move(first, last, out);
+
+    // swap_ranges
+    // std::swap_ranges
+
+    // copy_backward
+    // std::copy_backward
+
+    // move_backward
+    // std::move_backward
+}
+
+void value_modifiers_algorithms(){
+    // fill 
+    // generate
+
+    // std::generate(first, last, )
+    // iota
+    // std::iota(first, last, 42);
+
+    // std::replace(first, last, 42, 43);
+}
+
+void structure_changers_algorithms(){
+    // std::remove(begin(collection), end(collection), 99);
+    // collection.erase(std::remove(begin(collection), end(collection), 99), end(collection));
+    // std::unique(begin(collection)), end(collection));
+    // collection.erase(std::remove(begin(collection), end(collection), 99), end(collection));
+
+}
+
+void foo_copy_algorithms(){
+    // std::remove_copy
+    // std::unique_copy
+    // std::reverse_copy
+    // std::rotate_copy
+    // std::replace_copy
+    // std::partition_copy
+    // std::partial_sort_copy
+}
+
+void foo_if_algorithms(){
+    // std::find_if
+    // std::find_if_not
+    // std::count_if
+    // std::remove_if
+    // std::remove_copy_if
+    // std::replace_if
+    // std::replace_copy_if
+    // std::copy_if
+}
+
+void other_algorithms(){
+    // std::transform() // has 2 overloads
+    // std::for_each(begin(collection), end(collection), f)
+}
+
+void raw_memory_algorithms(){
+    // std::uninitialized_fill
+    // std::uninitialized_copy
+    // std::uninitialized_move
+    // std::destroy(first, last)
+
+    // #_n
+    
+    // std::copy_n
+    // std::fill_n
+    // std::generate_n
+    // std::search_n
+    // std::for_each_n
+    // std::uninitialized_copy_n
+    // std::uninitialized_fill_n
+    // std::uninitialized_move_n
+    // std::uninitialized_default_construct_n
+    // std::uninitialized_value_construct_n
+    // std::destroy_n
 }
 
 int main(){
@@ -343,5 +452,13 @@ int main(){
     is_foo_algorithms();
     is_foo_until_algorithms();
     querying_algorithms();
+    set_algorithms();
+    movers_algorithms();
+    value_modifiers_algorithms();
+    structure_changers_algorithms();
+    foo_copy_algorithms();
+    foo_if_algorithms();
+    other_algorithms();
+    raw_memory_algorithms();
     return 0;
 }
