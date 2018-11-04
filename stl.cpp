@@ -4,74 +4,181 @@
 #include <algorithm>
 #include <iterator>
 #include <numeric>
-// #include <execution>
 
-// void lower_bound_example(){
+void heap_algorithms(){
+    std::vector<int> numbers = {1, 2, 3, 4, 5, 6, 7, 9, 10};
 
-// }
+    // Make a heap from a collection
+    // More @ https://en.cppreference.com/w/cpp/algorithm/make_heap
+    std::make_heap(numbers.begin(), numbers.end());
+
+    std::cout << "make_heap     ";
+    for(auto& i : numbers) std::cout << i << " ";    
+    std::cout << std::endl;
+
+    // Push to heap
+    // More @ https://en.cppreference.com/w/cpp/algorithm/push_heap
+    numbers.push_back(8);
+    std::push_heap(numbers.begin(), numbers.end());
+
+    std::cout << "push_heap     "; 
+    for(auto& i : numbers)    std::cout << i << " ";
+    std::cout << std::endl;
+
+    // Pop heap
+    // More @ https://en.cppreference.com/w/cpp/algorithm/pop_heap
+    std::pop_heap(numbers.begin(), numbers.end());
+
+    std::cout << "pop_heap      ";
+    for(auto& i : numbers)    std::cout << i << " ";    
+    std::cout << std::endl;
+}
+
+void sorting_algorithms(){
+    std::vector<int> numbers = {1, 2, 3, 4, 5, 6, 7, 9, 10};
+
+    // Shuffle for demo purpose
+    std::shuffle(numbers.begin(), numbers.end(), std::default_random_engine(0));
+    std::cout << "Current State     ";
+    for(auto& i : numbers)    std::cout << i << " ";    
+    std::cout << std::endl;
+
+    // Basic sort
+    // More @ https://en.cppreference.com/w/cpp/algorithm/sort
+    std::cout << "sort              ";
+    std::sort(numbers.begin(), numbers.end());
+    for(auto& i : numbers)    std::cout << i << " ";    
+    std::cout << std::endl;
+
+    // Shuffle for demo purpose
+    std::shuffle(numbers.begin(), numbers.end(), std::default_random_engine(0));
+    std::cout << "Current State     ";
+    for(auto& i : numbers)    std::cout << i << " ";    
+    std::cout << std::endl;
+
+    // Partial sort
+    // More @ https://en.cppreference.com/w/cpp/algorithm/partial_sort
+    std::cout << "partial_sort      ";
+    std::partial_sort(numbers.begin(), numbers.begin() + 5, numbers.end());
+    for(auto& i : numbers)    std::cout << i << " ";    
+    std::cout << std::endl;
+
+    // Shuffle for demo purpose
+    std::shuffle(numbers.begin(), numbers.end(), std::default_random_engine(0));
+    std::cout << "Current State     ";
+    for(auto& i : numbers)    std::cout << i << " ";    
+    std::cout << std::endl;
+
+    // n'th element sort - element that would be in n'th position if the collection was sorted
+    // More at https://en.cppreference.com/w/cpp/algorithm/nth_element
+    std::cout << "nth_element       ";
+    std::nth_element(numbers.begin(), numbers.begin() + 5, numbers.end());
+    for(auto& i : numbers)    std::cout << i << " ";    
+    std::cout << std::endl;
+
+    // Shuffle for demo purpose
+    std::shuffle(numbers.begin(), numbers.end(), std::default_random_engine(0));
+    std::cout << "Current State     ";
+    for(auto& i : numbers)    std::cout << i << " ";    
+    std::cout << std::endl;
+
+    // Sort heap
+    // More @ https://en.cppreference.com/w/cpp/algorithm/sort_heap
+    std::make_heap(numbers.begin(), numbers.end());
+    std::sort_heap(numbers.begin(), numbers.end());
+    std::cout << "sort_heap     ";
+    for(auto& i : numbers)    std::cout << i << " ";    
+    std::cout << std::endl;
+
+    // Shuffle for demo purpose
+    std::shuffle(numbers.begin(), numbers.end(), std::default_random_engine(0));
+    std::cout << "Current State     ";
+    for(auto& i : numbers)    std::cout << i << " ";    
+    std::cout << std::endl;
+
+    // Inplace Merge 
+    // More @ https://en.cppreference.com/w/cpp/algorithm/inplace_merge
+    std::sort(numbers.begin(), numbers.begin() + 5);
+
+    std::cout << "Current State     ";
+    for(auto& i : numbers)    std::cout << i << " ";    
+    std::cout << std::endl;    
+
+    std::cout << "Current State     ";
+    std::sort(numbers.begin() + 5, numbers.end());
+    for(auto& i : numbers)    std::cout << i << " ";    
+    std::cout << std::endl;
+    
+    std::inplace_merge(numbers.begin(), numbers.begin() + 5, numbers.end());
+    std::cout << "inplace_merge         ";  
+    for(auto& i : numbers)    std::cout << i << " ";    
+    std::cout << std::endl;
+}
 
 int main(){
     // this is a simple vector that we are going to use throughout examples
     std::vector<int> numbers = {1, 2, 3, 4, 5, 6, 7, 9, 10};
 
-    /*** HEAP ***/
-    // Make a heap from a collection
-    // more @ https://en.cppreference.com/w/cpp/algorithm/make_heap
-    std::make_heap(numbers.begin(), numbers.end());
-    for(auto& i : numbers)    std::cout << i << " ";    std::cout << std::endl;
+    // /*** HEAP ***/
+    // // Make a heap from a collection
+    // // more @ https://en.cppreference.com/w/cpp/algorithm/make_heap
+    // std::make_heap(numbers.begin(), numbers.end());
+    // for(auto& i : numbers)    std::cout << i << " ";    std::cout << std::endl;
 
-    // Push to heap
-    // More at
-    numbers.push_back(8);
-    std::push_heap(numbers.begin(), numbers.end());
-    for(auto& i : numbers)    std::cout << i << " ";    std::cout << std::endl;
+    // // Push to heap
+    // // More at
+    // numbers.push_back(8);
+    // std::push_heap(numbers.begin(), numbers.end());
+    // for(auto& i : numbers)    std::cout << i << " ";    std::cout << std::endl;
 
-    // Pop heap
-    std::pop_heap(numbers.begin(), numbers.end());
-    for(auto& i : numbers)    std::cout << i << " ";    std::cout << std::endl;
+    // // Pop heap
+    // std::pop_heap(numbers.begin(), numbers.end());
+    // for(auto& i : numbers)    std::cout << i << " ";    std::cout << std::endl;
 
+    heap_algorithms();
     /*** SORTING ***/
 
-    // Shuffle 
-    std::shuffle(numbers.begin(), numbers.end(), std::default_random_engine(0));
-    for(auto& i : numbers)    std::cout << i << " ";    std::cout << std::endl;
+    // // Shuffle 
+    // std::shuffle(numbers.begin(), numbers.end(), std::default_random_engine(0));
+    // for(auto& i : numbers)    std::cout << i << " ";    std::cout << std::endl;
 
-    // Basic sort
-    // More at
-    std::sort(numbers.begin(), numbers.end());
-    for(auto& i : numbers)    std::cout << i << " ";    std::cout << std::endl;
+    // // Basic sort
+    // // More at
+    // std::sort(numbers.begin(), numbers.end());
+    // for(auto& i : numbers)    std::cout << i << " ";    std::cout << std::endl;
 
-    // Shuffle for next demo
-    std::shuffle(numbers.begin(), numbers.end(), std::default_random_engine(0));
+    // // Shuffle for next demo
+    // std::shuffle(numbers.begin(), numbers.end(), std::default_random_engine(0));
 
-    // Partial sort
-    // More at
-    std::partial_sort(numbers.begin(), numbers.begin() + 5, numbers.end());
-    for(auto& i : numbers)    std::cout << i << " ";    std::cout << std::endl;
+    // // Partial sort
+    // // More at
+    // std::partial_sort(numbers.begin(), numbers.begin() + 5, numbers.end());
+    // for(auto& i : numbers)    std::cout << i << " ";    std::cout << std::endl;
 
-    std::shuffle(numbers.begin(), numbers.end(), std::default_random_engine(0));
+    // std::shuffle(numbers.begin(), numbers.end(), std::default_random_engine(0));
 
-    // n'th element sort - element that would be in n'th position if the collection was sorted
-    // More at https://en.cppreference.com/w/cpp/algorithm/nth_element
-    std::nth_element(numbers.begin(), numbers.begin() + 5, numbers.end());
-    for(auto& i : numbers)    std::cout << i << " ";    std::cout << std::endl;
+    // // n'th element sort - element that would be in n'th position if the collection was sorted
+    // // More at https://en.cppreference.com/w/cpp/algorithm/nth_element
+    // std::nth_element(numbers.begin(), numbers.begin() + 5, numbers.end());
+    // for(auto& i : numbers)    std::cout << i << " ";    std::cout << std::endl;
 
-    // Sort heap
-    // More at
-    std::make_heap(numbers.begin(), numbers.end());
-    std::sort_heap(numbers.begin(), numbers.end());
-    for(auto& i : numbers)    std::cout << i << " ";    std::cout << std::endl;
+    // // Sort heap
+    // // More at
+    // std::make_heap(numbers.begin(), numbers.end());
+    // std::sort_heap(numbers.begin(), numbers.end());
+    // for(auto& i : numbers)    std::cout << i << " ";    std::cout << std::endl;
 
-    // Inplace Merge 
-    // More at 
-    std::shuffle(numbers.begin(), numbers.end(), std::default_random_engine(0));
-    std::sort(numbers.begin(), numbers.begin() + 5);
-    for(auto& i : numbers)    std::cout << i << " ";    std::cout << std::endl;    
-    std::sort(numbers.begin() + 5, numbers.end());
-    for(auto& i : numbers)    std::cout << i << " ";    std::cout << std::endl;
-    std::inplace_merge(numbers.begin(), numbers.begin() + 5, numbers.end());
-    std::cout << "inplace_merge         ";  for(auto& i : numbers)    std::cout << i << " ";    std::cout << std::endl;
+    // // Inplace Merge 
+    // // More at 
+    // std::shuffle(numbers.begin(), numbers.end(), std::default_random_engine(0));
+    // std::sort(numbers.begin(), numbers.begin() + 5);
+    // for(auto& i : numbers)    std::cout << i << " ";    std::cout << std::endl;    
+    // std::sort(numbers.begin() + 5, numbers.end());
+    // for(auto& i : numbers)    std::cout << i << " ";    std::cout << std::endl;
+    // std::inplace_merge(numbers.begin(), numbers.begin() + 5, numbers.end());
+    // std::cout << "inplace_merge         ";  for(auto& i : numbers)    std::cout << i << " ";    std::cout << std::endl;
 
+    sorting_algorithms();
     /*** PARTITION ***/ 
     // Get iterator to number with certain predicate
     auto it = std::partition(numbers.begin(), numbers.end(), [](int i){return i % 2 == 0;});
@@ -273,6 +380,7 @@ int main(){
         std::cout << find_number << " is in the container" << std::endl;
     else
         std::cout << find_number << " is not in the container" << std::endl;
+    
 
     return 0;
 }
