@@ -115,82 +115,25 @@ void sorting_algorithms(){
     std::cout << std::endl;
 }
 
-int main(){
-    // this is a simple vector that we are going to use throughout examples
+void partition_algorithms(){
     std::vector<int> numbers = {1, 2, 3, 4, 5, 6, 7, 9, 10};
 
-    // /*** HEAP ***/
-    // // Make a heap from a collection
-    // // more @ https://en.cppreference.com/w/cpp/algorithm/make_heap
-    // std::make_heap(numbers.begin(), numbers.end());
-    // for(auto& i : numbers)    std::cout << i << " ";    std::cout << std::endl;
-
-    // // Push to heap
-    // // More at
-    // numbers.push_back(8);
-    // std::push_heap(numbers.begin(), numbers.end());
-    // for(auto& i : numbers)    std::cout << i << " ";    std::cout << std::endl;
-
-    // // Pop heap
-    // std::pop_heap(numbers.begin(), numbers.end());
-    // for(auto& i : numbers)    std::cout << i << " ";    std::cout << std::endl;
-
-    heap_algorithms();
-    /*** SORTING ***/
-
-    // // Shuffle 
-    // std::shuffle(numbers.begin(), numbers.end(), std::default_random_engine(0));
-    // for(auto& i : numbers)    std::cout << i << " ";    std::cout << std::endl;
-
-    // // Basic sort
-    // // More at
-    // std::sort(numbers.begin(), numbers.end());
-    // for(auto& i : numbers)    std::cout << i << " ";    std::cout << std::endl;
-
-    // // Shuffle for next demo
-    // std::shuffle(numbers.begin(), numbers.end(), std::default_random_engine(0));
-
-    // // Partial sort
-    // // More at
-    // std::partial_sort(numbers.begin(), numbers.begin() + 5, numbers.end());
-    // for(auto& i : numbers)    std::cout << i << " ";    std::cout << std::endl;
-
-    // std::shuffle(numbers.begin(), numbers.end(), std::default_random_engine(0));
-
-    // // n'th element sort - element that would be in n'th position if the collection was sorted
-    // // More at https://en.cppreference.com/w/cpp/algorithm/nth_element
-    // std::nth_element(numbers.begin(), numbers.begin() + 5, numbers.end());
-    // for(auto& i : numbers)    std::cout << i << " ";    std::cout << std::endl;
-
-    // // Sort heap
-    // // More at
-    // std::make_heap(numbers.begin(), numbers.end());
-    // std::sort_heap(numbers.begin(), numbers.end());
-    // for(auto& i : numbers)    std::cout << i << " ";    std::cout << std::endl;
-
-    // // Inplace Merge 
-    // // More at 
-    // std::shuffle(numbers.begin(), numbers.end(), std::default_random_engine(0));
-    // std::sort(numbers.begin(), numbers.begin() + 5);
-    // for(auto& i : numbers)    std::cout << i << " ";    std::cout << std::endl;    
-    // std::sort(numbers.begin() + 5, numbers.end());
-    // for(auto& i : numbers)    std::cout << i << " ";    std::cout << std::endl;
-    // std::inplace_merge(numbers.begin(), numbers.begin() + 5, numbers.end());
-    // std::cout << "inplace_merge         ";  for(auto& i : numbers)    std::cout << i << " ";    std::cout << std::endl;
-
-    sorting_algorithms();
-    /*** PARTITION ***/ 
     // Get iterator to number with certain predicate
     auto it = std::partition(numbers.begin(), numbers.end(), [](int i){return i % 2 == 0;});
-    std::copy(std::begin(numbers), it, std::ostream_iterator<int>(std::cout, " ")); std::cout << std::endl;
+    std::copy(std::begin(numbers), it, std::ostream_iterator<int>(std::cout, " ")); 
+    std::cout << std::endl;
 
     // Parititon point
     // auto p = std::partition_point(numbers.begin(), numbers.end(), [](int i){ return i % 2 == 0; });
     // std::copy(numbers.begin(), p, std::ostream_iterator<int>(std::cout, " "));
 
-    std::cout << "Current State         ";  for(auto& i : numbers)    std::cout << i << " ";    std::cout << std::endl;
+    std::cout << "Current State         ";  
+    for(auto& i : numbers)    std::cout << i << " ";    
+    std::cout << std::endl;
+}
 
-    /*** PERMUTATIONS ***/
+void permutation_algorithms(){
+    std::vector<int> numbers = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10};
 
     // rotate
     // More at 
@@ -219,7 +162,10 @@ int main(){
     std::reverse(numbers.begin(), numbers.end());
     std::cout << "reverse         ";  for(auto& i : numbers)    std::cout << i << " ";    std::cout << std::endl;
 
-    /*** STABLE_# ***/
+}
+
+void stable_foo_algorithms(){
+
     // stable_sort - guarantees that relative order is kept
     std::vector<std::string> animals1 = { "mouse", "dog", "cat", "ant", "moth", "elephant" };
     std::vector<std::string> animals2 = { "mouse", "dog", "cat", "ant", "moth", "elephant" };
@@ -231,8 +177,10 @@ int main(){
     std::cout << "stable_sort         ";  for(auto& i : animals2)    std::cout << i << " ";    std::cout << std::endl;
 
     // stable_partition
+}
 
-    /*** IS_# ***/
+void is_foo_algorithms(){
+    std::vector<int> numbers = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10};
 
     // is_sorted
     // More at 
@@ -252,15 +200,18 @@ int main(){
 
     // is_partitioned
     // More at 
+}
 
-    /*** IS_#_UNTIL ***/
-
+void is_foo_until_algorithms(){
     // is_sorted_until
     // is_heap_until
     // is_partitioned_until
+}
 
-    /*** QUERYING ***/
+void querying_algorithms(){
 
+    std::vector<int> numbers = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10};
+    
     // count
     int count = std::count(numbers.begin(), numbers.end(), 5);
     std::cout << "Count of 5 = " << count << std::endl;
@@ -380,7 +331,17 @@ int main(){
         std::cout << find_number << " is in the container" << std::endl;
     else
         std::cout << find_number << " is not in the container" << std::endl;
-    
 
+}
+
+int main(){
+    heap_algorithms();
+    sorting_algorithms();
+    partition_algorithms();
+    permutation_algorithms();
+    stable_foo_algorithms();
+    is_foo_algorithms();
+    is_foo_until_algorithms();
+    querying_algorithms();
     return 0;
 }
