@@ -3,6 +3,12 @@
 #include <random>
 #include <algorithm>
 #include <iterator>
+#include <numeric>
+// #include <execution>
+
+// void lower_bound_example(){
+
+// }
 
 int main(){
     // this is a simple vector that we are going to use throughout examples
@@ -160,6 +166,9 @@ int main(){
     std::cout << "Sum of numbers in vector = " << sum << std::endl;
 
     // reduce
+    // auto reduce = std::reduce(std::execution::par, numbers.begin(), numbers.end());
+    // std::cout << "reduce        " << reduce << std::endl;
+
     // transform_reduce
 
     // partial_sum
@@ -198,5 +207,72 @@ int main(){
     if (std::none_of(numbers.cbegin(), numbers.cend(), [](int i){ return i < 0; }))
         std::cout << "None of numbers are negative" << std::endl;
 
+    // equal
+    // More at 
+    std::string word = "radar";
+    if(std::equal(word.begin(), word.begin() + word.size()/2, word.rbegin()))
+        std::cout << word << " is palindrome" << std::endl;
+    else
+        std::cout << word << " is not palindrome" << std::endl;
+
+    // is_permutation
+    std::string word_one = "apple", word_two = "paple";
+    if(std::is_permutation(word_one.begin(), word_one.end(), word_two.begin()))
+        std::cout << word_one << " is permutation of " << word_two << std::endl;
+    else
+        std::cout << word_one << " is not permutation of " << word_two << std::endl;
+
+    // lexicographical_compare
+    if(std::lexicographical_compare(word_one.begin(), word_one.end(), word_two.begin(), word_two.end()))
+        std::cout << word_one << " is lexicographically less than " << word_two << std::endl;
+    else
+        std::cout << word_one << " is lexicographically more than " << word_two << std::endl;
+
+    // mismatch
+    std::vector<int> numbers_one = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10};
+    std::vector<int> numbers_two = {1, 2, 3, 4, 5, 7, 8, 9, 10, 11};
     
+    auto mismatch = std::mismatch(numbers_one.begin(), numbers_one.end(), numbers_two.begin());
+    std::cout << "mismatch at " << *mismatch.first << " of first and " << *mismatch.second << " of second" << std::endl;
+
+    // find 
+    // More at 
+    std::cout << "Current State         ";  for(auto& i : numbers)    std::cout << i << " ";    std::cout << std::endl;
+    int find_number = 5;
+    if(std::find(numbers.begin(), numbers.end(), find_number) != numbers.end())
+        std::cout << "Found " << find_number << std::endl;
+    else
+        std::cout << "Could't find " << find_number << std::endl; 
+
+    std::sort(numbers.begin(), numbers.end());
+
+    // adjacent_find
+    auto adj_it = std::adjacent_find(numbers.begin(), numbers.end());
+    if(adj_it != numbers.end())
+        std::cout << "Found adjacent " << *adj_it << "\'s in collection" << std::endl;
+    else
+        std::cout << "Couldn't find adjacent elements in collection" << std::endl;
+
+    //  SEARCHING A VALUE IN SORTED CONTAINER
+    // equal_range
+    numbers = {1, 2, 3, 4, 5, 5, 5, 5, 6, 7, 8, 9};
+    find_number = 5;
+    auto equal_range = std::equal_range(numbers.begin(), numbers.end(), find_number);
+    std::cout << "First element of equal_range " << *equal_range.first << ", last element of equal range " << *equal_range.second << std::endl;
+
+    // lower_bound
+    auto lower_bound = std::lower_bound(numbers.begin(), numbers.end(), find_number);
+    std::cout << "Lower bound on finding " << find_number << " is " << *lower_bound << std::endl;
+
+    // upper_bound
+    auto upper_bound = std::upper_bound(numbers.begin(), numbers.end(), find_number);
+    std::cout << "Upper bound on finding " << find_number << " is " << *upper_bound << std::endl;
+
+    // binary_search
+    if(std::binary_search(numbers.begin(), numbers.end(), find_number))
+        std::cout << find_number << " is in the container" << std::endl;
+    else
+        std::cout << find_number << " is not in the container" << std::endl;
+
+    return 0;
 }
