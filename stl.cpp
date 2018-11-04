@@ -86,7 +86,7 @@ void sorting_algorithms(){
     // More @ https://en.cppreference.com/w/cpp/algorithm/sort_heap
     std::make_heap(numbers.begin(), numbers.end());
     std::sort_heap(numbers.begin(), numbers.end());
-    std::cout << "sort_heap     ";
+    std::cout << "sort_heap         ";
     for(auto& i : numbers)    std::cout << i << " ";    
     std::cout << std::endl;
 
@@ -108,9 +108,9 @@ void sorting_algorithms(){
     std::sort(numbers.begin() + 5, numbers.end());
     for(auto& i : numbers)    std::cout << i << " ";    
     std::cout << std::endl;
-    
+
     std::inplace_merge(numbers.begin(), numbers.begin() + 5, numbers.end());
-    std::cout << "inplace_merge         ";  
+    std::cout << "inplace_merge     ";  
     for(auto& i : numbers)    std::cout << i << " ";    
     std::cout << std::endl;
 }
