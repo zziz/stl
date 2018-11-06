@@ -167,40 +167,62 @@ Returned iterator 5
 Partition pointer 5
 ```
 
-### Partition Algorithms
+### Permutation Algorithms
 ```cpp
 std::vector<int> numbers = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10};
 
 // rotate - rotate the container (like a belt)
 // More @ https://en.cppreference.com/w/cpp/algorithm/rotate
 std::rotate(numbers.begin(), numbers.begin() + 1, numbers.end());
-std::cout << "rotate                ";  for(auto& i : numbers)    std::cout << i << " ";    std::cout << std::endl;
+std::cout << "rotate                ";  
+for(auto& i : numbers)    std::cout << i << " ";    
+std::cout << std::endl;
 
 std::rotate(numbers.begin(), numbers.begin() + 1, numbers.end());
-std::cout << "rotate                ";  for(auto& i : numbers)    std::cout << i << " ";    std::cout << std::endl;
+std::cout << "rotate                ";  
+for(auto& i : numbers)    std::cout << i << " ";    
+std::cout << std::endl;
 
 // shuffle - shuffle elements (values of elements) in container
 // More @ https://en.cppreference.com/w/cpp/algorithm/random_shuffle
 std::shuffle(numbers.begin(), numbers.end(), std::default_random_engine(0));
-std::cout << "shuffle               ";  for(auto& i : numbers)    std::cout << i << " ";    std::cout << std::endl;
+std::cout << "shuffle               ";  
+for(auto& i : numbers)    std::cout << i << " ";    
+std::cout << std::endl;
 
 // next_permutation - get next permutation of container
 // More @ https://en.cppreference.com/w/cpp/algorithm/next_permutation
-std::cout << "Current State         ";  for(auto& i : numbers)    std::cout << i << " ";    std::cout << std::endl;
+std::cout << "Current State         ";  
+for(auto& i : numbers)    std::cout << i << " ";    
+std::cout << std::endl;
+
 std::next_permutation(numbers.begin(), numbers.end());
-std::cout << "next_permutation      ";  for(auto& i : numbers)    std::cout << i << " ";    std::cout << std::endl;
+std::cout << "next_permutation      ";  
+for(auto& i : numbers)    std::cout << i << " ";    
+std::cout << std::endl;
 
 // prev_permutation - get previous permutation
 // More @ https://en.cppreference.com/w/cpp/algorithm/prev_permutation
-std::cout << "Current State         ";  for(auto& i : numbers)    std::cout << i << " ";    std::cout << std::endl;
+std::cout << "Current State         ";  
+for(auto& i : numbers)    std::cout << i << " ";    
+std::cout << std::endl;
+
 std::prev_permutation(numbers.begin(), numbers.end());
-std::cout << "next_permutation      ";  for(auto& i : numbers)    std::cout << i << " ";    std::cout << std::endl;
+std::cout << "next_permutation      ";  
+for(auto& i : numbers)    std::cout << i << " ";    
+std::cout << std::endl;
 
 // reverse - reverse the container
 // More @ https://en.cppreference.com/w/cpp/algorithm/reverse
-std::cout << "Current State         ";  for(auto& i : numbers)    std::cout << i << " ";    std::cout << std::endl;
+std::cout << "Current State         ";  
+for(auto& i : numbers)    std::cout << i << " ";    
+std::cout << std::endl;
+
 std::reverse(numbers.begin(), numbers.end());
-std::cout << "reverse               ";  for(auto& i : numbers)    std::cout << i << " ";    std::cout << std::endl;
+
+std::cout << "reverse               ";  
+for(auto& i : numbers)    std::cout << i << " ";    
+std::cout << std::endl;
 ```
 
 #### Output
@@ -224,16 +246,20 @@ std::vector<std::string> animals_stable_sort = {"elephant", "mouse", "rat", "pig
 // sorts container with given predicate, physical order is not guaranteed in case of equal elements
 // More @ https://en.cppreference.com/w/cpp/algorithm/sort
 std::sort(animals_sort.begin(), animals_sort.end(), [](const auto& a, const auto& b) { return a.size () < b.size (); });
-std::cout << "sort                  ";  for(auto& i : animals_sort)    std::cout << i << " ";    std::cout << std::endl;
+std::cout << "sort                  ";  
+for(auto& i : animals_sort)    std::cout << i << " ";    
+std::cout << std::endl;
 
 // sorts container with given predicate, physical order is not guaranteed in case of equal elements
 // More @ https://en.cppreference.com/w/cpp/algorithm/stable_sort
 std::stable_sort(animals_stable_sort.begin(), animals_stable_sort.end(), [](const auto& a, const auto& b) { return a.size () < b.size (); });
-std::cout << "stable_sort           ";  for(auto& i : animals_stable_sort)    std::cout << i << " ";    std::cout << std::endl;
+std::cout << "stable_sort           ";  
+for(auto& i : animals_stable_sort)    std::cout << i << " ";    
+std::cout << std::endl;
 
 // Explanation: predicate on sorting is length of string. In this case, "rat", "pig", "dog", "cat" and "ant" all have same length
 // Since they are same length, second condition on sorting will be the physical order. In stable_sort is it guarranteed.  
-}
+
 ```
 
 #### Output
