@@ -238,7 +238,7 @@ Current State         5 10 4 9 1 3 7 2 8 6
 reverse               6 8 2 7 3 1 9 4 10 5 
 ```
 
-### stable_# Algorithms
+### stable_#### Algorithms
 ```cpp
 std::vector<std::string> animals_sort = {"elephant", "mouse", "rat", "pig", "dog", "cat", "ant", "moth"};
 std::vector<std::string> animals_stable_sort = {"elephant", "mouse", "rat", "pig", "dog", "cat", "ant", "moth"};
@@ -266,4 +266,41 @@ std::cout << std::endl;
 ```
 sort                  rat pig dog cat ant moth mouse elephant 
 stable_sort           rat pig dog cat ant moth mouse elephant 
+```
+
+### is_#### Algorithms
+```cpp
+std::vector<int> numbers = {1, 3, 5, 7, 2, 4, 6, 8, 9, 10};
+
+// is_sorted - checks if container is sorted or not 
+// More @ https://en.cppreference.com/w/cpp/algorithm/is_sorted
+bool is_sorted =  std::is_sorted(numbers.begin(), numbers.end()); 
+std::cout << "Is sorted?                " << is_sorted << std::endl;
+
+std::sort(numbers.begin(), numbers.end());
+is_sorted = std::is_sorted(numbers.begin(), numbers.end());
+std::cout << "Is sorted?                " << is_sorted << std::endl;
+
+// is_heap - checks if container is a heap (BFS of Heap)
+// More @ https://en.cppreference.com/w/cpp/algorithm/is_heap
+bool is_heap = std::is_heap(numbers.begin(), numbers.end());
+std::cout << "Is heap?                  " << is_heap << std::endl;
+
+std::make_heap(numbers.begin(), numbers.end());
+is_heap = std::is_heap(numbers.begin(), numbers.end());
+std::cout << "Is heap?                  " << is_heap << std::endl;
+
+// is_partitioned - returns true if all elements satisfy the predicate
+// More @ https://en.cppreference.com/w/cpp/algorithm/is_partitioned
+bool is_partitioned = std::is_partitioned(numbers.begin(), numbers.end(), [](int i){    return i > 0;   });
+std::cout << "Predicate: is positive?   " << is_partitioned << std::endl;
+```
+
+#### Output 
+```
+Is sorted?                0
+Is sorted?                1
+Is heap?                  0
+Is heap?                  1
+Predicate: is positive?   1
 ```
