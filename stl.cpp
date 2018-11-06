@@ -1,9 +1,13 @@
 #include <iostream>
 #include <vector>
+#include <set>
 #include <random>
 #include <algorithm>
 #include <iterator>
 #include <numeric>
+
+#include <functional>
+// #include <execution>
 
 void heap_algorithms(){
     std::vector<int> numbers = {1, 2, 3, 4, 5, 6, 7, 9, 10};
@@ -246,23 +250,23 @@ void is_foo_algorithms(){
 }
 
 void is_foo_until_algorithms(){
-    std::vector<int> numbers = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10};
+std::vector<int> numbers = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10};
 
-    std::cout << "Current State     ";
-    for(auto& i : numbers)    std::cout << i << " ";    
-    std::cout << std::endl;  
+std::cout << "Current State     ";
+for(auto& i : numbers)    std::cout << i << " ";    
+std::cout << std::endl;  
 
-    // is_sorted_until
-    // More @ https://en.cppreference.com/w/cpp/algorithm/is_sorted_until
-    auto sorted = std::is_sorted_until(numbers.begin(), numbers.end());
-    if(sorted != numbers.end()) std::cout << "Is sorted until " << *sorted << std::endl;
-    else                        std::cout << "Is sorted until the end" << std::endl;
+// is_sorted_until
+// More @ https://en.cppreference.com/w/cpp/algorithm/is_sorted_until
+auto sorted = std::is_sorted_until(numbers.begin(), numbers.end());
+if(sorted != numbers.end()) std::cout << "Is sorted until " << *sorted << std::endl;
+else                        std::cout << "Is sorted until the end" << std::endl;
 
-    // is_heap_until
-    // More @ https://en.cppreference.com/w/cpp/algorithm/is_heap_until
-    auto heap = std::is_heap_until(numbers.begin(), numbers.end());
-    if(heap != numbers.end())   std::cout << "Is heap until " << *heap << std::endl;
-    else                        std::cout << "Is heap until the end" << std::endl;
+// is_heap_until
+// More @ https://en.cppreference.com/w/cpp/algorithm/is_heap_until
+auto heap = std::is_heap_until(numbers.begin(), numbers.end());
+if(heap != numbers.end())   std::cout << "Is heap until " << *heap << std::endl;
+else                        std::cout << "Is heap until the end" << std::endl;
 }
 
 void querying_algorithms(){
@@ -287,11 +291,18 @@ void querying_algorithms(){
     // transform_reduce
 
     // partial_sum
-    std::cout << "Current State         ";  for(auto& i : numbers)    std::cout << i << " ";    std::cout << std::endl;
+    std::cout << "Current State         ";  
+    for(auto& i : numbers)    std::cout << i << " ";    
+    std::cout << std::endl;
+    
     std::partial_sum(numbers.begin(), numbers.end(), numbers.begin());
-    std::cout << "partial_sum         ";  for(auto& i : numbers)    std::cout << i << " ";    std::cout << std::endl;
+
+    std::cout << "partial_sum         ";  
+    for(auto& i : numbers)    std::cout << i << " ";    
+    std::cout << std::endl;
 
     // inclusive_scan
+    // std::inclusive_scan(numbers.begin(), numbers.end(), numbers.begin());
     // transform_inclusive_scan
     // exclusive_scan
     // transform_exclusive_scan
@@ -368,7 +379,6 @@ void querying_algorithms(){
     else
         std::cout << "Couldn't find adjacent elements in collection" << std::endl;
 
-    //  SEARCHING A VALUE IN SORTED CONTAINER
     // equal_range
     numbers = {1, 2, 3, 4, 5, 5, 5, 5, 6, 7, 8, 9};
     find_number = 5;
@@ -395,22 +405,67 @@ void querying_algorithms(){
 
     // find_first_of
 
-    // max_element
+    // max_element - returns pointer to max element of the container
+    auto max_element = std::max_element(numbers.begin(), numbers.end());
+    std::cout << "max_element " << *max_element << std::endl;
 
-    // min_element
+    // min_element - returns pointer to min element of the container
+    auto min_element = std::min_element(numbers.begin(), numbers.end());
+    std::cout << "min_element " << *min_element << std::endl;
 
-    // minmax_element
+    // minmax_element - returns a pair of pointers to min and max elements
+    auto minmax_element = std::minmax_element(numbers.begin(), numbers.end());
+    std::cout << "min_element " << *minmax_element.first << " max_element " << *minmax_element.second << std::endl;
 
 }
 
 void set_algorithms(){
-    // set_difference
+
+    std::set<int> s1 {1, 2, 5, 5, 5, 9};
+    std::set<int> s2 {2, 5, 7};
+    std::set<int> sdiff;
+    std::set_difference(s1.begin(), s1.end(), s2.begin(), s2.end(), std::inserter(sdiff, sdiff.begin()));
+
+    std::cout << "Set difference is             ";
+    for(auto& i : sdiff)    std::cout << i << " ";
+    std::cout << std::endl;
+
+    // Note that sorted vector (or any other container) is also considered a set
+    std::vector<int> v1 {1, 2, 5, 5, 5, 9};
+    std::vector<int> v2 {2, 5, 7};
+    std::vector<int> vdiff;
+    std::set_difference(v1.begin(), v1.end(), v2.begin(), v2.end(), std::inserter(vdiff, vdiff.begin()));
+
+    std::cout << "Set (vector) difference is    ";
+    for(auto& i : sdiff)    std::cout << i << " ";
+    std::cout << std::endl;
 
     // set_intersection
+    // More @ 
+    std::set<int> sinter;
+    std::set_intersection(s1.begin(), s1.end(), s2.begin(), s2.end(), std::inserter(sinter, sinter.begin()));
 
+    std::cout << "Set intersection is             ";
+    for(auto& i : sinter)    std::cout << i << " ";
+    std::cout << std::endl;    
+    
     // set_union
+    // More @ 
+    std::set<int> sunion;
+    std::set_union(s1.begin(), s1.end(), s2.begin(), s2.end(), std::inserter(sunion, sunion.begin()));
+
+    std::cout << "Set union is             ";
+    for(auto& i : sunion)    std::cout << i << " ";
+    std::cout << std::endl;    
 
     // set_symmetric_difference
+    // More @ 
+    std::set<int> ssymdiff;
+    std::set_symmetric_difference(s1.begin(), s1.end(), s2.begin(), s2.end(), std::inserter(ssymdiff, ssymdiff.begin()));
+
+    std::cout << "Set symmetric difference is             ";
+    for(auto& i : ssymdiff)    std::cout << i << " ";
+    std::cout << std::endl;  
 
     // includes
 
@@ -507,9 +562,9 @@ int main(){
     // permutation_algorithms();
     // stable_foo_algorithms();
     // is_foo_algorithms();
-    is_foo_until_algorithms();
+    // is_foo_until_algorithms();
     // querying_algorithms();
-    // set_algorithms();
+    set_algorithms();
     // movers_algorithms();
     // value_modifiers_algorithms();
     // structure_changers_algorithms();
