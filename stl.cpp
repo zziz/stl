@@ -118,18 +118,22 @@ void sorting_algorithms(){
 void partition_algorithms(){
     std::vector<int> numbers = {1, 2, 3, 4, 5, 6, 7, 9, 10};
 
-    // Get iterator to number with certain predicate
-    auto it = std::partition(numbers.begin(), numbers.end(), [](int i){return i % 2 == 0;});
-    std::copy(std::begin(numbers), it, std::ostream_iterator<int>(std::cout, " ")); 
-    std::cout << std::endl;
-
-    // Parititon point
-    // auto p = std::partition_point(numbers.begin(), numbers.end(), [](int i){ return i % 2 == 0; });
-    // std::copy(numbers.begin(), p, std::ostream_iterator<int>(std::cout, " "));
-
-    std::cout << "Current State         ";  
+    std::cout << "Current State     ";
     for(auto& i : numbers)    std::cout << i << " ";    
-    std::cout << std::endl;
+    std::cout << std::endl;    
+
+    // Partition - reorder the input so that elements satisfying the predicate are clustered at the beginning
+    auto it = std::partition(numbers.begin(), numbers.end(), [](int i){return i % 2 == 0;});
+
+    std::cout << "After partition   ";
+    for(auto& i : numbers)    std::cout << i << " ";    std::cout << std::endl;
+    // Returned iterator points to first element that doesn't satisfy the predicate
+    std::cout << "Returned iterator " << *it << std::endl;
+    
+    // Parititon point - return pointer to first element that doesn't satisfy the predicate partition point
+    // This function doesn't modity the elements, only locates the pointer
+    auto p = std::partition_point(numbers.begin(), numbers.end(), [](int i){ return i % 2 == 0; });
+    std::cout << "Partition pointer " << *p << std::endl;
 }
 
 void permutation_algorithms(){
@@ -444,21 +448,21 @@ void raw_memory_algorithms(){
 }
 
 int main(){
-    heap_algorithms();
-    sorting_algorithms();
+    // heap_algorithms();
+    // sorting_algorithms();
     partition_algorithms();
-    permutation_algorithms();
-    stable_foo_algorithms();
-    is_foo_algorithms();
-    is_foo_until_algorithms();
-    querying_algorithms();
-    set_algorithms();
-    movers_algorithms();
-    value_modifiers_algorithms();
-    structure_changers_algorithms();
-    foo_copy_algorithms();
-    foo_if_algorithms();
-    other_algorithms();
-    raw_memory_algorithms();
+    // permutation_algorithms();
+    // stable_foo_algorithms();
+    // is_foo_algorithms();
+    // is_foo_until_algorithms();
+    // querying_algorithms();
+    // set_algorithms();
+    // movers_algorithms();
+    // value_modifiers_algorithms();
+    // structure_changers_algorithms();
+    // foo_copy_algorithms();
+    // foo_if_algorithms();
+    // other_algorithms();
+    // raw_memory_algorithms();
     return 0;
 }
