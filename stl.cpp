@@ -123,6 +123,7 @@ void partition_algorithms(){
     std::cout << std::endl;    
 
     // Partition - reorder the input so that elements satisfying the predicate are clustered at the beginning
+    // More @ https://en.cppreference.com/w/cpp/algorithm/partition
     auto it = std::partition(numbers.begin(), numbers.end(), [](int i){return i % 2 == 0;});
 
     std::cout << "After partition   ";
@@ -132,6 +133,7 @@ void partition_algorithms(){
     
     // Parititon point - return pointer to first element that doesn't satisfy the predicate partition point
     // This function doesn't modity the elements, only locates the pointer
+    // More @ https://en.cppreference.com/w/cpp/algorithm/partition_point
     auto p = std::partition_point(numbers.begin(), numbers.end(), [](int i){ return i % 2 == 0; });
     std::cout << "Partition pointer " << *p << std::endl;
 }
@@ -139,33 +141,36 @@ void partition_algorithms(){
 void permutation_algorithms(){
     std::vector<int> numbers = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10};
 
-    // rotate
-    // More at 
+    // rotate - rotate the container (like a belt)
+    // More @ https://en.cppreference.com/w/cpp/algorithm/rotate
     std::rotate(numbers.begin(), numbers.begin() + 1, numbers.end());
-    std::cout << "rotate         ";  for(auto& i : numbers)    std::cout << i << " ";    std::cout << std::endl;
+    std::cout << "rotate                ";  for(auto& i : numbers)    std::cout << i << " ";    std::cout << std::endl;
 
     std::rotate(numbers.begin(), numbers.begin() + 1, numbers.end());
-    std::cout << "rotate         ";  for(auto& i : numbers)    std::cout << i << " ";    std::cout << std::endl;
+    std::cout << "rotate                ";  for(auto& i : numbers)    std::cout << i << " ";    std::cout << std::endl;
 
-    // shuffle
+    // shuffle - shuffle elements (values of elements) in container
+    // More @ https://en.cppreference.com/w/cpp/algorithm/random_shuffle
     std::shuffle(numbers.begin(), numbers.end(), std::default_random_engine(0));
-    std::cout << "shuffle         ";  for(auto& i : numbers)    std::cout << i << " ";    std::cout << std::endl;
+    std::cout << "shuffle               ";  for(auto& i : numbers)    std::cout << i << " ";    std::cout << std::endl;
 
-    // next_permutation
+    // next_permutation - get next permutation of container
+    // More @ https://en.cppreference.com/w/cpp/algorithm/next_permutation
     std::cout << "Current State         ";  for(auto& i : numbers)    std::cout << i << " ";    std::cout << std::endl;
     std::next_permutation(numbers.begin(), numbers.end());
-    std::cout << "next_permutation         ";  for(auto& i : numbers)    std::cout << i << " ";    std::cout << std::endl;
+    std::cout << "next_permutation      ";  for(auto& i : numbers)    std::cout << i << " ";    std::cout << std::endl;
 
-    // prev_permutation
+    // prev_permutation - get previous permutation
+    // More @ https://en.cppreference.com/w/cpp/algorithm/prev_permutation
     std::cout << "Current State         ";  for(auto& i : numbers)    std::cout << i << " ";    std::cout << std::endl;
     std::prev_permutation(numbers.begin(), numbers.end());
-    std::cout << "next_permutation         ";  for(auto& i : numbers)    std::cout << i << " ";    std::cout << std::endl;
+    std::cout << "next_permutation      ";  for(auto& i : numbers)    std::cout << i << " ";    std::cout << std::endl;
 
-    // reverse
+    // reverse - reverse the container
+    // More @ https://en.cppreference.com/w/cpp/algorithm/reverse
     std::cout << "Current State         ";  for(auto& i : numbers)    std::cout << i << " ";    std::cout << std::endl;
     std::reverse(numbers.begin(), numbers.end());
-    std::cout << "reverse         ";  for(auto& i : numbers)    std::cout << i << " ";    std::cout << std::endl;
-
+    std::cout << "reverse               ";  for(auto& i : numbers)    std::cout << i << " ";    std::cout << std::endl;
 }
 
 void stable_foo_algorithms(){
@@ -450,8 +455,8 @@ void raw_memory_algorithms(){
 int main(){
     // heap_algorithms();
     // sorting_algorithms();
-    partition_algorithms();
-    // permutation_algorithms();
+    // partition_algorithms();
+    permutation_algorithms();
     // stable_foo_algorithms();
     // is_foo_algorithms();
     // is_foo_until_algorithms();
