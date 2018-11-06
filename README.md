@@ -215,3 +215,29 @@ next_permutation      5 10 4 9 1 3 7 2 8 6
 Current State         5 10 4 9 1 3 7 2 8 6 
 reverse               6 8 2 7 3 1 9 4 10 5 
 ```
+
+### stable_# Algorithms
+```cpp
+std::vector<std::string> animals_sort = {"elephant", "mouse", "rat", "pig", "dog", "cat", "ant", "moth"};
+std::vector<std::string> animals_stable_sort = {"elephant", "mouse", "rat", "pig", "dog", "cat", "ant", "moth"};
+
+// sorts container with given predicate, physical order is not guaranteed in case of equal elements
+// More @ https://en.cppreference.com/w/cpp/algorithm/sort
+std::sort(animals_sort.begin(), animals_sort.end(), [](const auto& a, const auto& b) { return a.size () < b.size (); });
+std::cout << "sort                  ";  for(auto& i : animals_sort)    std::cout << i << " ";    std::cout << std::endl;
+
+// sorts container with given predicate, physical order is not guaranteed in case of equal elements
+// More @ https://en.cppreference.com/w/cpp/algorithm/stable_sort
+std::stable_sort(animals_stable_sort.begin(), animals_stable_sort.end(), [](const auto& a, const auto& b) { return a.size () < b.size (); });
+std::cout << "stable_sort           ";  for(auto& i : animals_stable_sort)    std::cout << i << " ";    std::cout << std::endl;
+
+// Explanation: predicate on sorting is length of string. In this case, "rat", "pig", "dog", "cat" and "ant" all have same length
+// Since they are same length, second condition on sorting will be the physical order. In stable_sort is it guarranteed.  
+}
+```
+
+#### Output
+```
+sort                  rat pig dog cat ant moth mouse elephant 
+stable_sort           rat pig dog cat ant moth mouse elephant 
+```

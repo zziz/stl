@@ -175,17 +175,21 @@ void permutation_algorithms(){
 
 void stable_foo_algorithms(){
 
-    // stable_sort - guarantees that relative order is kept
-    std::vector<std::string> animals1 = { "mouse", "dog", "cat", "ant", "moth", "elephant" };
-    std::vector<std::string> animals2 = { "mouse", "dog", "cat", "ant", "moth", "elephant" };
-    // auto animals_for_sort = animals;
-    std::sort(animals1.begin(), animals1.end(), [](const auto& a, const auto& b) { return a.size () < b.size (); });
-    std::cout << "sort         ";  for(auto& i : animals1)    std::cout << i << " ";    std::cout << std::endl;
-    // auto animals_for_stable_sort = animals;
-    std::stable_sort(animals2.begin(), animals2.end(), [](const auto& a, const auto& b) { return a.size () < b.size (); });
-    std::cout << "stable_sort         ";  for(auto& i : animals2)    std::cout << i << " ";    std::cout << std::endl;
+    std::vector<std::string> animals_sort = {"elephant", "mouse", "rat", "pig", "dog", "cat", "ant", "moth"};
+    std::vector<std::string> animals_stable_sort = {"elephant", "mouse", "rat", "pig", "dog", "cat", "ant", "moth"};
+    
+    // sorts container with given predicate, physical order is not guaranteed in case of equal elements
+    // More @ https://en.cppreference.com/w/cpp/algorithm/sort
+    std::sort(animals_sort.begin(), animals_sort.end(), [](const auto& a, const auto& b) { return a.size () < b.size (); });
+    std::cout << "sort                  ";  for(auto& i : animals_sort)    std::cout << i << " ";    std::cout << std::endl;
+    
+    // sorts container with given predicate, physical order is not guaranteed in case of equal elements
+    // More @ https://en.cppreference.com/w/cpp/algorithm/stable_sort
+    std::stable_sort(animals_stable_sort.begin(), animals_stable_sort.end(), [](const auto& a, const auto& b) { return a.size () < b.size (); });
+    std::cout << "stable_sort           ";  for(auto& i : animals_stable_sort)    std::cout << i << " ";    std::cout << std::endl;
 
-    // stable_partition
+    // Explanation: predicate on sorting is length of string. In this case, "rat", "pig", "dog", "cat" and "ant" all have same length
+    // Since they are same length, second condition on sorting will be the physical order. In stable_sort is it guarranteed.  
 }
 
 void is_foo_algorithms(){
@@ -456,8 +460,8 @@ int main(){
     // heap_algorithms();
     // sorting_algorithms();
     // partition_algorithms();
-    permutation_algorithms();
-    // stable_foo_algorithms();
+    // permutation_algorithms();
+    stable_foo_algorithms();
     // is_foo_algorithms();
     // is_foo_until_algorithms();
     // querying_algorithms();
