@@ -363,7 +363,10 @@ void querying_algorithms(){
 
     // find 
     // More at 
-    std::cout << "Current State         ";  for(auto& i : numbers)    std::cout << i << " ";    std::cout << std::endl;
+    std::cout << "Current State         ";  
+    for(auto& i : numbers)    std::cout << i << " ";    
+    std::cout << std::endl;
+
     int find_number = 5;
     if(std::find(numbers.begin(), numbers.end(), find_number) != numbers.end())
         std::cout << "Found " << find_number << std::endl;
@@ -431,6 +434,7 @@ void set_algorithms(){
     std::cout << std::endl;
 
     // Note that sorted vector (or any other container) is also considered a set
+    // More @ https://en.cppreference.com/w/cpp/algorithm/set_difference
     std::vector<int> v1 {1, 2, 5, 5, 5, 9};
     std::vector<int> v2 {2, 5, 7};
     std::vector<int> vdiff;
@@ -441,81 +445,204 @@ void set_algorithms(){
     std::cout << std::endl;
 
     // set_intersection
-    // More @ 
+    // More @ https://en.cppreference.com/w/cpp/algorithm/set_intersection
     std::set<int> sinter;
     std::set_intersection(s1.begin(), s1.end(), s2.begin(), s2.end(), std::inserter(sinter, sinter.begin()));
 
-    std::cout << "Set intersection is             ";
+    std::cout << "Set intersection is           ";
     for(auto& i : sinter)    std::cout << i << " ";
     std::cout << std::endl;    
     
     // set_union
-    // More @ 
+    // More @ https://en.cppreference.com/w/cpp/algorithm/set_union
     std::set<int> sunion;
     std::set_union(s1.begin(), s1.end(), s2.begin(), s2.end(), std::inserter(sunion, sunion.begin()));
 
-    std::cout << "Set union is             ";
+    std::cout << "Set union is                  ";
     for(auto& i : sunion)    std::cout << i << " ";
     std::cout << std::endl;    
 
     // set_symmetric_difference
-    // More @ 
+    // More @ https://en.cppreference.com/w/cpp/algorithm/set_symmetric_difference
     std::set<int> ssymdiff;
     std::set_symmetric_difference(s1.begin(), s1.end(), s2.begin(), s2.end(), std::inserter(ssymdiff, ssymdiff.begin()));
 
-    std::cout << "Set symmetric difference is             ";
+    std::cout << "Set symmetric difference is   ";
     for(auto& i : ssymdiff)    std::cout << i << " ";
     std::cout << std::endl;  
 
-    // includes
+    // includes 
+    // More @ https://en.cppreference.com/w/cpp/algorithm/includes
+    bool includes = std::includes(s1.begin(), s1.end(), s2.begin(), s2.end());
+    std::cout << "s1 includes s2?               " << includes << std::endl;
 
     // merge
+    // More @ https://en.cppreference.com/w/cpp/algorithm/merge
+    std::set<int> dst;
+    std::merge(s1.begin(), s1.end(), s2.begin(), s2.end(), std::inserter(dst, dst.end()));
+
+    std::cout << "Content of dst                ";  
+    for(auto& i : dst)    std::cout << i << " ";    
+    std::cout << std::endl;
 }
 
 void movers_algorithms(){
-    // copy
-    // std::copy(first, last, out);
+
+    std::vector<int> numbers = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10};
+
+    std::cout << "Content of numbers                    ";  
+    for(auto& i : numbers)    std::cout << i << " ";    
+    std::cout << std::endl;
+
+    // copy (a.k.a. deep copy)
+    // More @ https://en.cppreference.com/w/cpp/algorithm/copy
+    std::vector<int> cpy;
+    std::copy(numbers.begin(), numbers.end(), std::back_inserter(cpy));
+
+    std::cout << "Content of cpy                        ";  
+    for(auto& i : cpy)    std::cout << i << " ";    
+    std::cout << std::endl;
 
     // move
-    // std::move(first, last, out);
+    // More @ https://en.cppreference.com/w/cpp/algorithm/move
+    std::vector<int> mv;
+    std::move(numbers.begin(), numbers.end(), std::back_inserter(mv));
+
+    std::cout << "Content of mv                         ";  
+    for(auto& i : mv)    std::cout << i << " ";    
+    std::cout << std::endl;
 
     // swap_ranges
-    // std::swap_ranges
+    // More @ https://en.cppreference.com/w/cpp/algorithm/swap_ranges
+
+    std::vector<int> v1 = {1, 2, 3};
+    std::vector<int> v2 = {4, 5, 6};
+
+    std::cout << "Content of v1                         ";  
+    for(auto& i : v1)    std::cout << i << " ";    
+    std::cout << std::endl;
+
+    std::cout << "Content of v2                         ";  
+    for(auto& i : v2)    std::cout << i << " ";    
+    std::cout << std::endl;
+
+    std::swap_ranges(v1.begin(), v1.end(), v2.begin());
+
+    std::cout << "Content of v1 after swap              ";  
+    for(auto& i : v1)    std::cout << i << " ";    
+    std::cout << std::endl;
+
+    std::cout << "Content of v2 after swap              ";  
+    for(auto& i : v2)    std::cout << i << " ";    
+    std::cout << std::endl;
 
     // copy_backward
-    // std::copy_backward
+    // More @ https://en.cppreference.com/w/cpp/algorithm/copy_backward
+
+    std::copy_backward(v1.begin(), v1.begin() + 1, v1.end());
+
+    std::cout << "Content of s2 after copy_backward     ";  
+    for(auto& i : v1)    std::cout << i << " ";    
+    std::cout << std::endl;
 
     // move_backward
-    // std::move_backward
+    // More @ https://en.cppreference.com/w/cpp/algorithm/move_backward
+
+    std::move_backward(v2.begin(), v2.begin() + 1, v2.end());
+
+    std::cout << "Content of s2 after move_backward     ";  
+    for(auto& i : v2)    std::cout << i << " ";    
+    std::cout << std::endl;
 }
 
 void value_modifiers_algorithms(){
+
     // fill 
+    // More @ https://en.cppreference.com/w/cpp/algorithm/fill
+    std::vector<int> numbers = {0, 1, 2, 3, 4, 5, 6, 7, 8, 9};
+
+    std::cout << "Current State         ";  
+    for(auto& i : numbers)    std::cout << i << " ";    
+    std::cout << std::endl;
+
+    std::fill(numbers.begin(), numbers.end(), -1);
+
+    std::cout << "Current State         ";  
+    for(auto& i : numbers)    std::cout << i << " ";    
+    std::cout << std::endl;
+
     // generate
+    // More @ https://en.cppreference.com/w/cpp/algorithm/generate
+    std::generate(numbers.begin(), numbers.end(), [n = 0] () mutable { return n++; });
 
-    // std::generate(first, last, )
+    std::cout << "Current State         ";  
+    for(auto& i : numbers)    std::cout << i << " ";    
+    std::cout << std::endl;
+
     // iota
-    // std::iota(first, last, 42);
+    // More @ https://en.cppreference.com/w/cpp/algorithm/iota
+    std::iota(numbers.begin(), numbers.end(), 42);
 
-    // std::replace(first, last, 42, 43);
+    std::cout << "Current State         ";  
+    for(auto& i : numbers)    std::cout << i << " ";    
+    std::cout << std::endl;
+
+    // replace
+    // More @ https://en.cppreference.com/w/cpp/algorithm/replace
+    std::replace(numbers.begin(), numbers.end(), 42, 43);
+
+    std::cout << "Current State         ";  
+    for(auto& i : numbers)    std::cout << i << " ";    
+    std::cout << std::endl;
 }
 
 void structure_changers_algorithms(){
     // std::remove(begin(collection), end(collection), 99);
+    // More @ https://en.cppreference.com/w/cpp/algorithm/remove
+
     // collection.erase(std::remove(begin(collection), end(collection), 99), end(collection));
+
+
     // std::unique(begin(collection)), end(collection));
+    // More @ 
+
     // collection.erase(std::remove(begin(collection), end(collection), 99), end(collection));
 
 }
 
 void foo_copy_algorithms(){
-    // std::remove_copy
+    // std::remove_copy: removes 'value' and copies elements to destination
+    // More @ https://en.cppreference.com/w/cpp/algorithm/remove_copy
+    std::vector<int> numbers = {0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10};
+
+    std::cout << "Current State         ";  
+    for(auto& i : numbers)    std::cout << i << " ";    
+    std::cout << std::endl;
+
+    std::vector<int> cpy;
+    std::remove_copy(numbers.begin(), numbers.end(), std::back_inserter(cpy), 5);
+
+    std::cout << "Current State         ";  
+    for(auto& i : cpy)    std::cout << i << " ";    
+    std::cout << std::endl;
+
     // std::unique_copy
+    // More @ 
+
     // std::reverse_copy
+    // More @ 
+
     // std::rotate_copy
+    // More @ 
+
     // std::replace_copy
+    // More @ 
+
     // std::partition_copy
+    // More @ 
+
     // std::partial_sort_copy
+    // More @ 
 }
 
 void foo_if_algorithms(){
@@ -536,9 +663,16 @@ void other_algorithms(){
 
 void raw_memory_algorithms(){
     // std::uninitialized_fill
+    // More @ 
+
     // std::uninitialized_copy
+    // More @ 
+
     // std::uninitialized_move
+    // More @ 
+
     // std::destroy(first, last)
+    // More @ 
 
     // #_n
     
@@ -564,11 +698,11 @@ int main(){
     // is_foo_algorithms();
     // is_foo_until_algorithms();
     // querying_algorithms();
-    set_algorithms();
+    // set_algorithms();
     // movers_algorithms();
     // value_modifiers_algorithms();
     // structure_changers_algorithms();
-    // foo_copy_algorithms();
+    foo_copy_algorithms();
     // foo_if_algorithms();
     // other_algorithms();
     // raw_memory_algorithms();
