@@ -1,6 +1,10 @@
 # stl
 
-##### Purpose of this repository is to introduce and show example usages of C++ STL algorithms. This is a work in progress. Fork, copy, edit, contribute, distribute or do whatever you want. Let's make it a useful repository for everyone! 
+Purpose of this repository is to introduce and show example usages of C++ STL algorithms. This is a work in progress. Fork, copy, edit, contribute, distribute or do whatever you want. Let's make it a useful repository for everyone! 
+
+```
+g++ --std=c++17 stl.cpp
+```
 ### Heap Algorithms
 ```cpp
 std::vector<int> numbers = {1, 2, 3, 4, 5, 6, 7, 9, 10};
