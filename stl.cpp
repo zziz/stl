@@ -250,23 +250,23 @@ void is_foo_algorithms(){
 }
 
 void is_foo_until_algorithms(){
-std::vector<int> numbers = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10};
+    std::vector<int> numbers = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10};
 
-std::cout << "Current State     ";
-for(auto& i : numbers)    std::cout << i << " ";    
-std::cout << std::endl;  
+    std::cout << "Current State     ";
+    for(auto& i : numbers)    std::cout << i << " ";    
+    std::cout << std::endl;  
 
-// is_sorted_until
-// More @ https://en.cppreference.com/w/cpp/algorithm/is_sorted_until
-auto sorted = std::is_sorted_until(numbers.begin(), numbers.end());
-if(sorted != numbers.end()) std::cout << "Is sorted until " << *sorted << std::endl;
-else                        std::cout << "Is sorted until the end" << std::endl;
+    // is_sorted_until
+    // More @ https://en.cppreference.com/w/cpp/algorithm/is_sorted_until
+    auto sorted = std::is_sorted_until(numbers.begin(), numbers.end());
+    if(sorted != numbers.end()) std::cout << "Is sorted until " << *sorted << std::endl;
+    else                        std::cout << "Is sorted until the end" << std::endl;
 
-// is_heap_until
-// More @ https://en.cppreference.com/w/cpp/algorithm/is_heap_until
-auto heap = std::is_heap_until(numbers.begin(), numbers.end());
-if(heap != numbers.end())   std::cout << "Is heap until " << *heap << std::endl;
-else                        std::cout << "Is heap until the end" << std::endl;
+    // is_heap_until
+    // More @ https://en.cppreference.com/w/cpp/algorithm/is_heap_until
+    auto heap = std::is_heap_until(numbers.begin(), numbers.end());
+    if(heap != numbers.end())   std::cout << "Is heap until " << *heap << std::endl;
+    else                        std::cout << "Is heap until the end" << std::endl;
 }
 
 void querying_algorithms(){
@@ -646,18 +646,68 @@ void foo_copy_algorithms(){
 }
 
 void foo_if_algorithms(){
+    std::vector<int> numbers = {2, 3, 4, 5, 6, 7, 8, 9, 10};
     // std::find_if
+    // More @ 
+    std::vector<int>::iterator it = std::find_if (numbers.begin(), numbers.end(), [](int n){    return n % 7 == 0;});
+    std::cout << "Found number " << *it << std::endl;
+
     // std::find_if_not
+    // More @ 
+    it = std::find_if_not (numbers.begin(), numbers.end(), [](int n){    return n % 2 == 0;});
+    std::cout << "Found number " << *it << std::endl;
+
     // std::count_if
+    // More @ 
+    int divisible_by_three = std::count_if(numbers.begin(), numbers.end(), [](int i){return i % 3 == 0;});
+    std::cout << "Number of entries divisible by three " << divisible_by_three << std::endl;
+
+    std::cout << "Current State         ";  
+    for(auto& i : numbers)    std::cout << i << " ";    
+    std::cout << std::endl; 
+
     // std::remove_if
+    // More @ https://en.cppreference.com/w/cpp/algorithm/remove
+    // Important: note that remove_if returns pointer to first elements that satisfy the predicate,
+    numbers.erase(std::remove_if(numbers.begin(), numbers.end(), [](int n){ return n % 7 == 0;}));
+    
+    std::cout << "Current State         ";  
+    for(auto& i : numbers)    std::cout << i << " ";    
+    std::cout << std::endl;    
+
     // std::remove_copy_if
+    // More @ 
+
     // std::replace_if
+    // More @ 
+
     // std::replace_copy_if
+    // More @ 
+
     // std::copy_if
+    // More @ 
 }
 
 void other_algorithms(){
-    // std::transform() // has 2 overloads
+
+    std::vector<int> numbers = {2, 3, 4, 5, 6, 7, 8, 9, 10};
+    
+    // std::transform() 
+    // More @ 
+    std::vector<int> numbers_two(numbers.size());
+    std::transform (numbers.begin(), numbers.end(), numbers_two.begin(), [](int i){ return i + 10;});
+
+    std::cout << "Current State         ";  
+    for(auto& i : numbers_two)    std::cout << i << " ";    
+    std::cout << std::endl; 
+
+    // second overload of std::transform
+    std::transform (numbers.begin(), numbers.end(), numbers_two.begin(), numbers.begin(), std::plus<int>());
+
+    std::cout << "Current State         ";  
+    for(auto& i : numbers_two)    std::cout << i << " ";    
+    std::cout << std::endl; 
+
     // std::for_each(begin(collection), end(collection), f)
 }
 
@@ -702,7 +752,7 @@ int main(){
     // movers_algorithms();
     // value_modifiers_algorithms();
     // structure_changers_algorithms();
-    foo_copy_algorithms();
+    // foo_copy_algorithms();
     // foo_if_algorithms();
     // other_algorithms();
     // raw_memory_algorithms();
